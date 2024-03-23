@@ -7,8 +7,37 @@ public class TrappinRainWater {
         int[] heights= {3,0,0,2,0,4};
         System.out.println(trapRainwaterQuadratic( heights));
         System.out.println(trapRainWaterLinearSpace( heights));
-        //System.out.println(trapRainWaterConstantSpace( heights));
+        System.out.println(trapRainWaterConstantSpace( heights));
 
+    }
+
+    private static int trapRainWaterConstantSpace(int[] heights) {
+
+        int leftMax=0,rightMax=0;
+        int left=0,right= heights.length-1;
+        int waterTraped=0;
+        while (left<right){
+
+            if(heights[left]>=heights[right]){
+                if(heights[right]>=rightMax){
+                    rightMax=heights[right];
+
+                }else{
+                    waterTraped+=rightMax-heights[right];
+                }
+                right++;
+            }else{
+                if(heights[left]>=leftMax){
+
+                    leftMax=heights[left];
+                }else{
+                    waterTraped+=leftMax-heights[left];
+                }
+                left++;
+
+            }
+        }
+        return waterTraped;
     }
 
     private static int trapRainwaterQuadratic(int[] heights) {
@@ -37,16 +66,14 @@ public class TrappinRainWater {
         int leftMax=0;
         for(int i=0;i<=index;i++){
 
+            System.out.println();
             leftMax=Math.max(leftMax,heights[i]);
 
         }
         return leftMax;
     }
 
-//    private static int trapRainWaterConstantSpace(int[] heights) {
-//
-//        int left=0,right=heights.length-1;
-//    }
+
 
     private static int trapRainWaterLinearSpace(int[] heights) {
 
